@@ -291,3 +291,8 @@ buildNumber.properties
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/java,maven,angular,intellij,eclipse,visualstudiocode,git
+/Trello-like.iml
+/mvnw.cmd
+/mvnw
+/.mvn/wrapper/maven-wrapper.properties
+/HELP.md
