@@ -53,7 +53,7 @@ public class ListServiceImpl implements ListService {
     @Override
     public void remove(Integer id) {
         if(listRepository.existsById("" + id))
-            listRepository.deleteById("" + "");
+            listRepository.deleteById("" + id);
         else
             throw new ApiRequestException("This List does not exist.", HttpStatus.NOT_FOUND);
     }
