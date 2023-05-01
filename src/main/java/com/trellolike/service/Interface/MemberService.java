@@ -8,11 +8,11 @@ public interface MemberService {
 
     List<Member> getAll();
 
-    Member get(Integer id) throws Error;
+    Member get(Integer id);
 
     Member add(Member member);
 
     Member update(Integer id, Member member);
 
-    void remove(Integer id) throws Error;
+    void remove(Integer id);
 }

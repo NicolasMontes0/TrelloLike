@@ -8,11 +8,11 @@ public interface CardService {
 
     List<Card> getAll();
 
-    Card get(Integer id) throws Error;
+    Card get(Integer id);
 
     Card add(Card card);
 
     Card update(Integer id, Card card);
 
-    void remove(Integer id) throws Error;
+    void remove(Integer id);
 }

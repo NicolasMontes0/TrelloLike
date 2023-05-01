@@ -8,11 +8,11 @@ public interface TagService {
 
     List<Tag> getAll();
 
-    Tag get(Integer id) throws Error;
+    Tag get(Integer id);
 
     Tag add(Tag tag);
 
     Tag update(Integer id, Tag tag);
 
-    void remove(Integer id) throws Error;
+    void remove(Integer id);
 }
