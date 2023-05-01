@@ -15,8 +15,8 @@ import lombok.Setter;
 public class List {
     @Id
     @GeneratedValue
-    private String id_list;
+    private Integer id_list;
 
     @Column(nullable = false)
-    private Integer name;
+    private String name;
 }

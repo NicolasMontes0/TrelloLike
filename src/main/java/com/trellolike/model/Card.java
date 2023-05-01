@@ -15,10 +15,13 @@ import lombok.Setter;
 public class Card {
     @Id
     @GeneratedValue
-    private String id_card;
+    private Integer id_card;
 
     @Column(nullable = false)
-    private Integer name;
+    private String name;
 
-    private Integer description;
+    private String description;
+
+    @Column(nullable = false, unique = true)
+    private Integer id_list;
 }

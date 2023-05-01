@@ -15,8 +15,8 @@ import lombok.Setter;
 public class Tag {
     @Id
     @GeneratedValue
-    private String id_tag;
+    private Integer id_tag;
 
     @Column(nullable = false)
-    private Integer name;
+    private String name;
 }

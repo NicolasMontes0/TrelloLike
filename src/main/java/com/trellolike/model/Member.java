@@ -15,8 +15,8 @@ import lombok.Setter;
 public class Member {
     @Id
     @GeneratedValue
-    private String id_member;
+    private Integer id_member;
 
     @Column(nullable = false)
-    private Integer name;
+    private String name;
 }
