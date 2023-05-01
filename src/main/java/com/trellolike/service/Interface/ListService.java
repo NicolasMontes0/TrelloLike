@@ -4,13 +4,13 @@ import com.trellolike.model.List;
 
 public interface ListService {
 
-    List[] getAll();
+    java.util.List<List> getAll();
 
-    List get(String id);
+    List get(Integer id) throws Error;
 
-    List add(List list);
+    List add(List list) throws Error;
 
-    List update(String id, List list);
+    List update(Integer id, List list);
 
-    void remove(String id);
+    void remove(Integer id) throws Error;
 }

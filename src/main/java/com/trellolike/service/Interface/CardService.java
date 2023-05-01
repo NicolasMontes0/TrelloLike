@@ -1,17 +1,18 @@
 package com.trellolike.service.Interface;
 
 import com.trellolike.model.Card;
-import com.trellolike.model.List;
+
+import java.util.List;
 
 public interface CardService {
 
-    Card[] getAll();
+    List<Card> getAll();
 
-    Card get(String id);
+    Card get(Integer id) throws Error;
 
     Card add(Card card);
 
-    Card update(String id, Card card);
+    Card update(Integer id, Card card);
 
-    void remove(String id);
+    void remove(Integer id) throws Error;
 }

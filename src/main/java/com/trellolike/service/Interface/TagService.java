@@ -1,17 +1,18 @@
 package com.trellolike.service.Interface;
 
-import com.trellolike.model.Member;
 import com.trellolike.model.Tag;
+
+import java.util.List;
 
 public interface TagService {
 
-    Tag[] getAll();
+    List<Tag> getAll();
 
-    Tag get(String id);
+    Tag get(Integer id) throws Error;
 
     Tag add(Tag tag);
 
-    Tag update(String id, Tag tag);
+    Tag update(Integer id, Tag tag);
 
-    void remove(String id);
+    void remove(Integer id) throws Error;
 }
