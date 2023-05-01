@@ -15,12 +15,12 @@ public class ListController {
     private final ListService listService;
 
     @GetMapping
-    public ResponseEntity<List[]> read() {
+    public ResponseEntity<java.util.List<List>> read() {
         return new ResponseEntity<>(listService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<List> readByIsbn(@PathVariable String id) {
+    public ResponseEntity<List> readById(@PathVariable Integer id) {
         return new ResponseEntity<>(listService.get(id), HttpStatus.OK);
     }
 
@@ -30,13 +30,13 @@ public class ListController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<List> update(@PathVariable String id, @RequestBody List list) {
+    public ResponseEntity<List> update(@PathVariable Integer id, @RequestBody List list) {
         return new ResponseEntity<>(listService.update(id, list), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable String id) {
+    public String delete(@PathVariable Integer id) {
         listService.remove(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return "Operation OK";
     }
 }

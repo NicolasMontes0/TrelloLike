@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping({"/Tags", "/tags"})
 @AllArgsConstructor
@@ -15,12 +17,12 @@ public class TagController {
     private final TagService tagService;
 
     @GetMapping
-    public ResponseEntity<Tag[]> read() {
+    public ResponseEntity<List<Tag>> read() {
         return new ResponseEntity<>(tagService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Tag> readByIsbn(@PathVariable String id) {
+    public ResponseEntity<Tag> readById(@PathVariable Integer id) {
         return new ResponseEntity<>(tagService.get(id), HttpStatus.OK);
     }
 
@@ -30,13 +32,13 @@ public class TagController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Tag> update(@PathVariable String id, @RequestBody Tag tag) {
+    public ResponseEntity<Tag> update(@PathVariable Integer id, @RequestBody Tag tag) {
         return new ResponseEntity<>(tagService.update(id, tag), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable String id) {
+    public String delete(@PathVariable Integer id) {
         tagService.remove(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return "Operation OK";
     }
 }

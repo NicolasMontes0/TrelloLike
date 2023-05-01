@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping({"/Members", "/members"})
 @AllArgsConstructor
@@ -15,12 +17,12 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping
-    public ResponseEntity<Member[]> read() {
+    public ResponseEntity<List<Member>> read() {
         return new ResponseEntity<>(memberService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Member> readByIsbn(@PathVariable String id) {
+    public ResponseEntity<Member> readById(@PathVariable Integer id) {
         return new ResponseEntity<>(memberService.get(id), HttpStatus.OK);
     }
 
@@ -30,13 +32,13 @@ public class MemberController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Member> update(@PathVariable String id, @RequestBody Member member) {
+    public ResponseEntity<Member> update(@PathVariable Integer id, @RequestBody Member member) {
         return new ResponseEntity<>(memberService.update(id, member), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable String id) {
+    public String delete(@PathVariable Integer id) {
         memberService.remove(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return "Operation OK";
     }
 }
