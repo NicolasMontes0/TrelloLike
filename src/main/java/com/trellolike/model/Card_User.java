@@ -7,19 +7,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "CARD_MEMBER")
+@Table(name = "CARD_USER")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Card_Member {
+public class Card_User {
     @Id
     @GeneratedValue
-    private String id_card_member;
+    private Integer id_card_user;
 
     @Column(nullable = false)
     private Integer id_card;
 
     @Column(nullable = false)
-    private Integer id_member;
+    private Integer id_user;
 }

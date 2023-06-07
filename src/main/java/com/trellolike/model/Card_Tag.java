@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Card_Tag {
     @Id
     @GeneratedValue
-    private String id_card_tag;
+    private Integer id_card_tag;
 
     @Column(nullable = false)
     private Integer id_card;

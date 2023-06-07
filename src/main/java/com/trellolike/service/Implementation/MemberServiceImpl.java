@@ -1,8 +1,8 @@
 package com.trellolike.service.Implementation;
 
 import com.trellolike.exception.ApiRequestException;
-import com.trellolike.model.Member;
-import com.trellolike.repository.MemberRepository;
+import com.trellolike.model.User;
+import com.trellolike.repository.UserRepository;
 import com.trellolike.service.Interface.MemberService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,46 +15,46 @@ import java.util.Optional;
 @AllArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
-    private MemberRepository memberRepository;
+    private UserRepository userRepository;
 
     @Override
-    public List<Member> getAll() {
-        return memberRepository.findAll();
+    public List<User> getAll() {
+        return userRepository.findAll();
     }
 
     @Override
-    public Member get(Integer id) {
-        if(memberRepository.existsById("" + id))
-            return memberRepository.findById("" + id).get();
+    public User get(Integer id) {
+        if(userRepository.existsById("" + id))
+            return userRepository.findById("" + id).get();
         else
             throw new ApiRequestException("This Member does not exist.", HttpStatus.NOT_FOUND);
     }
 
     @Override
-    public Member add(Member member) {
-        if(member.getName() == null || member.getName().equals(""))
+    public User add(User user) {
+        if(user.getName() == null || user.getName().equals(""))
             throw new ApiRequestException("'name' must not be null or blank.", HttpStatus.BAD_REQUEST);
-        return memberRepository.save(member);
+        return userRepository.save(user);
     }
 
     @Override
-    public Member update(Integer id, Member newMember) {
-        Optional<Member> opMember = memberRepository.findById("" + id);
+    public User update(Integer id, User newUser) {
+        Optional<User> opMember = userRepository.findById("" + id);
         if(opMember.isEmpty())
-            throw new ApiRequestException("There is no member with this isbn.", HttpStatus.NOT_FOUND);
-        Member member = opMember.get();
-        if(newMember.getId_member() != null || newMember.getName().equals(""))
+            throw new ApiRequestException("There is no member with this id.", HttpStatus.NOT_FOUND);
+        User user = opMember.get();
+        if(newUser.getId_user() != null || newUser.getName().equals(""))
             throw new ApiRequestException("'id_member' cannot be changed.", HttpStatus.BAD_REQUEST);
-        if(newMember.getName() != null) {
-            member.setName(newMember.getName());
+        if(newUser.getName() != null) {
+            user.setName(newUser.getName());
         }
-        return memberRepository.save(member);
+        return userRepository.save(user);
     }
 
     @Override
     public void remove(Integer id) {
-        if(memberRepository.existsById("" + id))
-            memberRepository.deleteById("" + id);
+        if(userRepository.existsById("" + id))
+            userRepository.deleteById("" + id);
         else
             throw new ApiRequestException("This Member does not exist.", HttpStatus.NOT_FOUND);
     }

@@ -1,18 +1,18 @@
 package com.trellolike.service.Interface;
 
-import com.trellolike.model.Member;
+import com.trellolike.model.User;
 
 import java.util.List;
 
 public interface MemberService {
 
-    List<Member> getAll();
+    List<User> getAll();
 
-    Member get(Integer id);
+    User get(Integer id);
 
-    Member add(Member member);
+    User add(User user);
 
-    Member update(Integer id, Member member);
+    User update(Integer id, User user);
 
     void remove(Integer id);
 }

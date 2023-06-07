@@ -41,7 +41,7 @@ public class TagServiceImpl implements TagService {
     public Tag update(Integer id, Tag newTag) {
         Optional<Tag> opTag = tagRepository.findById("" + id);
         if(opTag.isEmpty())
-            throw new ApiRequestException("There is no tag with this isbn.", HttpStatus.NOT_FOUND);
+            throw new ApiRequestException("There is no tag with this id.", HttpStatus.NOT_FOUND);
         Tag tag = opTag.get();
         if(newTag.getId_tag() != null)
             throw new ApiRequestException("'id_tag' cannot be changed.", HttpStatus.BAD_REQUEST);

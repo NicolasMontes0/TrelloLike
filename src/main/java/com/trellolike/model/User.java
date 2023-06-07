@@ -7,16 +7,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "MEMBER")
+@Table(name = "USER")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Member {
+public class User {
     @Id
     @GeneratedValue
-    private Integer id_member;
+    private Integer id_user;
 
     @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
+    private String mail;
+
+    @Column(nullable = false)
+    private String password;
 }

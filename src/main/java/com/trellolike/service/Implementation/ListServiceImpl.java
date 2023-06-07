@@ -40,7 +40,7 @@ public class ListServiceImpl implements ListService {
     public List update(Integer id, List newList) {
         Optional<List> opList = listRepository.findById("" + id);
         if(opList.isEmpty())
-            throw new ApiRequestException("There is no list with this isbn.", HttpStatus.NOT_FOUND);
+            throw new ApiRequestException("There is no list with this id.", HttpStatus.NOT_FOUND);
         List list = opList.get();
         if(newList.getId_list() != null)
             throw new ApiRequestException("'id_list' cannot be changed.", HttpStatus.BAD_REQUEST);

@@ -38,9 +38,9 @@ public class CardServiceImpl implements CardService {
         if(card.getName() == null || card.getName().equals(""))
             throw new ApiRequestException("'name' must not be null or blank.", HttpStatus.BAD_REQUEST);
         if(card.getId_list() == null)
-            throw new ApiRequestException("'id_list' must not be null or blank.", HttpStatus.BAD_REQUEST);
+            throw new ApiRequestException("'id_card' must not be null or blank.", HttpStatus.BAD_REQUEST);
         if(!listRepository.existsById("" + card.getId_list()))
-            throw new ApiRequestException("'id_List' does not exist.", HttpStatus.BAD_REQUEST);
+            throw new ApiRequestException("'id_card' does not exist.", HttpStatus.BAD_REQUEST);
         return cardRepository.save(card);
     }
 
@@ -48,7 +48,7 @@ public class CardServiceImpl implements CardService {
     public Card update(Integer id, Card newCard) {
         Optional<Card> opCard = cardRepository.findById("" + id);
         if(opCard.isEmpty())
-            throw new ApiRequestException("There is no card with this isbn.", HttpStatus.NOT_FOUND);
+            throw new ApiRequestException("There is no card with this id.", HttpStatus.NOT_FOUND);
         Card card = opCard.get();
         if(newCard.getId_card() != null)
             throw new ApiRequestException("'id_card' cannot be changed.", HttpStatus.BAD_REQUEST);

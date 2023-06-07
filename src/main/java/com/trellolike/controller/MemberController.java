@@ -1,6 +1,6 @@
 package com.trellolike.controller;
 
-import com.trellolike.model.Member;
+import com.trellolike.model.User;
 import com.trellolike.service.Interface.MemberService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,23 +17,23 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping
-    public ResponseEntity<List<Member>> read() {
+    public ResponseEntity<List<User>> read() {
         return new ResponseEntity<>(memberService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Member> readById(@PathVariable Integer id) {
+    public ResponseEntity<User> readById(@PathVariable Integer id) {
         return new ResponseEntity<>(memberService.get(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Member> create(@RequestBody Member member) {
-        return new ResponseEntity<>(memberService.add(member), HttpStatus.CREATED);
+    public ResponseEntity<User> create(@RequestBody User user) {
+        return new ResponseEntity<>(memberService.add(user), HttpStatus.CREATED);
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Member> update(@PathVariable Integer id, @RequestBody Member member) {
-        return new ResponseEntity<>(memberService.update(id, member), HttpStatus.OK);
+    public ResponseEntity<User> update(@PathVariable Integer id, @RequestBody User user) {
+        return new ResponseEntity<>(memberService.update(id, user), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
