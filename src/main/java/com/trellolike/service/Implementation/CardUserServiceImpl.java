@@ -5,7 +5,7 @@ import com.trellolike.model.Card_User;
 import com.trellolike.repository.CardUserRepository;
 import com.trellolike.repository.CardRepository;
 import com.trellolike.repository.UserRepository;
-import com.trellolike.service.Interface.CardMemberService;
+import com.trellolike.service.Interface.CardUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class CardMemberServiceImpl implements CardMemberService {
+public class CardUserServiceImpl implements CardUserService {
 
     private CardUserRepository cardUserRepository;
 

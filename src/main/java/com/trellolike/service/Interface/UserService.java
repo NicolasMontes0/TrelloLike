@@ -4,7 +4,7 @@ import com.trellolike.model.User;
 
 import java.util.List;
 
-public interface MemberService {
+public interface UserService {
 
     List<User> getAll();
 

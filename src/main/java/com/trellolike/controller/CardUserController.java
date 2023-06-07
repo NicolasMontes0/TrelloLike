@@ -1,7 +1,7 @@
 package com.trellolike.controller;
 
 import com.trellolike.model.Card_User;
-import com.trellolike.service.Interface.CardMemberService;
+import com.trellolike.service.Interface.CardUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping({"/CardsMembers", "/cardsmembers"})
 @AllArgsConstructor
-public class CardMemberController {
+public class CardUserController {
 
-    private final CardMemberService card_memberService;
+    private final CardUserService card_memberService;
 
     @GetMapping
     public ResponseEntity<java.util.List<Card_User>> read() {

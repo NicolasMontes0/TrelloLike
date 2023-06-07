@@ -4,7 +4,7 @@ import com.trellolike.model.Card_User;
 
 import java.util.List;
 
-public interface CardMemberService {
+public interface CardUserService {
 
     List<Card_User> getAll();
 

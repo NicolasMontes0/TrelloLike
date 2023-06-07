@@ -3,7 +3,7 @@ package com.trellolike.service.Implementation;
 import com.trellolike.exception.ApiRequestException;
 import com.trellolike.model.User;
 import com.trellolike.repository.UserRepository;
-import com.trellolike.service.Interface.MemberService;
+import com.trellolike.service.Interface.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class MemberServiceImpl implements MemberService {
+public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
 
