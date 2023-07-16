@@ -1,9 +1,7 @@
 package com.trellolike.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.trellolike.model.model.Board;
 import com.trellolike.model.model.List;
 import com.trellolike.util.ApiCaller;
 import com.trellolike.util.Current;
