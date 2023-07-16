@@ -26,9 +26,14 @@ public class BoardController {
         return new ResponseEntity<>(boardService.get(id), HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Board> create(@RequestBody Board board) {
-        return new ResponseEntity<>(boardService.add(board), HttpStatus.CREATED);
+    @GetMapping("/users/{id}")
+    public ResponseEntity<List<Board>> readByUserId(@PathVariable Integer id) {
+        return new ResponseEntity<>(boardService.getByUserId(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/users/{id}")
+    public ResponseEntity<Board> create(@RequestBody Board board, @PathVariable Integer id) {
+        return new ResponseEntity<>(boardService.add(board, id), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

@@ -21,13 +21,23 @@ public class UserController {
         return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/{pseudo}/{password}")
+    public ResponseEntity<String> readByPseudoAndPassword(@PathVariable String pseudo, @PathVariable String password) {
+        return new ResponseEntity<>(userService.getUserByPseudoAndPassword(pseudo, password), HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<User> readById(@PathVariable Integer id) {
         return new ResponseEntity<>(userService.get(id), HttpStatus.OK);
     }
 
+    @GetMapping("/pseudo/{pseudo}")
+    public ResponseEntity<User> readById(@PathVariable String pseudo) {
+        return new ResponseEntity<>(userService.getUserByPseudo(pseudo), HttpStatus.OK);
+    }
+
     @PostMapping
-    public ResponseEntity<User> create(@RequestBody User user) {
+    public ResponseEntity<String> create(@RequestBody User user) {
         return new ResponseEntity<>(userService.add(user), HttpStatus.CREATED);
     }
 

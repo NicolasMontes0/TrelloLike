@@ -10,9 +10,13 @@ public interface UserService {
 
     User get(Integer id);
 
-    User add(User user);
+    String add(User user);
 
     User update(Integer id, User user);
 
     void remove(Integer id);
+
+    String getUserByPseudoAndPassword(String pseudo, String password);
+
+    User getUserByPseudo(String pseudo);
 }

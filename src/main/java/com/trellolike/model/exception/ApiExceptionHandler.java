@@ -1,5 +1,6 @@
-package com.trellolike.exception;
+package com.trellolike.model.exception;
 
+import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,7 @@ import java.util.Map;
 @ControllerAdvice
 public class ApiExceptionHandler {
 
-    private Map<String, Object> error = new LinkedHashMap<>();
+    private final Map<String, Object> error = new LinkedHashMap<>();
 
     @ExceptionHandler(value = ApiRequestException.class)
     public ResponseEntity<Map<String, Object>> handleApiRequestException(ApiRequestException e) {
@@ -48,6 +49,15 @@ public class ApiExceptionHandler {
         error.put("detail", e.getCause().getMessage());
         error.put("status", HttpStatus.BAD_REQUEST);
         error.put("status Code", HttpStatus.BAD_REQUEST.value());
+
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = CommunicationsException.class)
+    public ResponseEntity<Map<String, Object>> handleCommunicationsExceptionException(CommunicationsException e) {
+        error.put("detail", e.getCause().getMessage());
+        error.put("status", HttpStatus.INTERNAL_SERVER_ERROR);
+        error.put("status Code", HttpStatus.INTERNAL_SERVER_ERROR.value());
 
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }

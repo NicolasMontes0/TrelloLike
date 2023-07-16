@@ -1,4 +1,4 @@
-package com.trellolike.exception;
+package com.trellolike.model.exception;
 
 import lombok.Getter;
 import lombok.Setter;

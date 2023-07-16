@@ -31,14 +31,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User add(User user) {
-        if(user.getName() == null || user.getName().equals(""))
+    public String getUserByPseudoAndPassword(String pseudo, String password) {
+        return userRepository.getUser(pseudo, password);
+    }
+
+    @Override
+    public User getUserByPseudo(String pseudo) {
+        return userRepository.getUserByPseudo(pseudo);
+    }
+
+    @Override
+    public String add(User user) {
+        if(user.getPseudo() == null || user.getPseudo().equals(""))
             throw new ApiRequestException("'name' must not be null or blank.", HttpStatus.BAD_REQUEST);
         if(user.getMail() == null || user.getMail().equals(""))
             throw new ApiRequestException("'mail' must not be null or blank.", HttpStatus.BAD_REQUEST);
         if(user.getPassword() == null || user.getPassword().equals(""))
             throw new ApiRequestException("'password' must not be null or blank.", HttpStatus.BAD_REQUEST);
-        return userRepository.save(user);
+        return userRepository.save(user).getId_user() + "";
     }
 
     @Override
@@ -47,10 +57,16 @@ public class UserServiceImpl implements UserService {
         if(opMember.isEmpty())
             throw new ApiRequestException("There is no user with this id.", HttpStatus.NOT_FOUND);
         User user = opMember.get();
-        if(newUser.getId_user() != null || newUser.getName().equals(""))
+        if(newUser.getId_user() != null || newUser.getPseudo().equals(""))
             throw new ApiRequestException("'id_user' cannot be changed.", HttpStatus.BAD_REQUEST);
-        if(newUser.getName() != null) {
-            user.setName(newUser.getName());
+        if(newUser.getPseudo() != null) {
+            user.setPseudo(newUser.getPseudo());
+        }
+        if(newUser.getMail() != null && !newUser.getMail().equals("")) {
+            user.setMail(newUser.getMail());
+        }
+        if(newUser.getPassword() != null && !newUser.getPassword().equals("")) {
+            user.setPassword(newUser.getPassword());
         }
         return userRepository.save(user);
     }

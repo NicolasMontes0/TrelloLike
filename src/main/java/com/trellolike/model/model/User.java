@@ -18,7 +18,7 @@ public class User {
     private Integer id_user;
 
     @Column(nullable = false)
-    private String name;
+    private String pseudo;
 
     @Column(nullable = false)
     private String mail;

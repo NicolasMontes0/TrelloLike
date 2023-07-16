@@ -1,9 +1,11 @@
 package com.trellolike.model.service.Implementation;
 
-import com.trellolike.model.repository.BoardRepository;
 import com.trellolike.model.exception.ApiRequestException;
 import com.trellolike.model.model.Board;
+import com.trellolike.model.model.User_Board;
+import com.trellolike.model.repository.BoardRepository;
 import com.trellolike.model.service.Interface.BoardService;
+import com.trellolike.model.service.Interface.UserBoardService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ import java.util.Optional;
 public class BoardServiceImpl implements BoardService {
 
     private BoardRepository boardRepository;
+
+    private UserBoardService userBoardService;
 
     @Override
     public List<Board> getAll() {
@@ -31,10 +35,17 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public Board add(Board board) {
+    public List<Board> getByUserId(Integer id) {
+        return boardRepository.getBoardsByUserId(id);
+    }
+
+    @Override
+    public Board add(Board board, Integer id_user) {
         if(board.getName() == null && board.getName().equals(""))
             throw new ApiRequestException("'name' must not be null or blank.", HttpStatus.BAD_REQUEST);
-        return boardRepository.save(board);
+        Board result = boardRepository.save(board);
+        userBoardService.add(new User_Board(null, id_user, result.getId_board()));
+        return result;
     }
 
     @Override

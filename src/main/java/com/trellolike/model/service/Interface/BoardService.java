@@ -10,9 +10,11 @@ public interface BoardService {
 
     Board get(Integer id);
 
-    Board add(Board board);
+    Board add(Board board, Integer id_user);
 
     Board update(Integer id, Board board);
 
     void remove(Integer id);
+
+    List<Board> getByUserId(Integer id);
 }
