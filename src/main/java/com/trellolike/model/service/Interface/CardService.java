@@ -15,4 +15,6 @@ public interface CardService {
     Card update(Integer id, Card card);
 
     void remove(Integer id);
+
+    List<Card> getByIdList(Integer id);
 }

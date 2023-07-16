@@ -1,11 +1,11 @@
 package com.trellolike.model.service.Implementation;
 
-import com.trellolike.model.repository.BoardRepository;
-import com.trellolike.model.repository.UserBoardRepository;
-import com.trellolike.model.service.Interface.UserBoardService;
 import com.trellolike.model.exception.ApiRequestException;
 import com.trellolike.model.model.User_Board;
+import com.trellolike.model.repository.BoardRepository;
+import com.trellolike.model.repository.UserBoardRepository;
 import com.trellolike.model.repository.UserRepository;
+import com.trellolike.model.service.Interface.UserBoardService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

@@ -13,4 +13,6 @@ public interface ListService {
     List update(Integer id, List list);
 
     void remove(Integer id);
+
+    java.util.List<List> getByProject(Integer id);
 }

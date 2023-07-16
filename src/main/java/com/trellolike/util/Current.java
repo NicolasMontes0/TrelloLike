@@ -6,4 +6,6 @@ public class Current {
 
     public static String projectId;
 
+    public static String listId;
+
 }

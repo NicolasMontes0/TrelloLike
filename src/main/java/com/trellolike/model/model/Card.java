@@ -22,6 +22,6 @@ public class Card {
 
     private String description;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private Integer id_list;
 }

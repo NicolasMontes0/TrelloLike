@@ -26,6 +26,11 @@ public class CardController {
         return new ResponseEntity<>(cardService.get(id), HttpStatus.OK);
     }
 
+    @GetMapping("/lists/{id}")
+    public ResponseEntity<List<Card>> readByIdList(@PathVariable Integer id) {
+        return new ResponseEntity<>(cardService.getByIdList(id), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Card> create(@RequestBody Card card) {
         return new ResponseEntity<>(cardService.add(card), HttpStatus.CREATED);

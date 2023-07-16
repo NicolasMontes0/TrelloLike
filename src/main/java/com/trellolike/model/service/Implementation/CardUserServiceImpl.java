@@ -2,8 +2,8 @@ package com.trellolike.model.service.Implementation;
 
 import com.trellolike.model.exception.ApiRequestException;
 import com.trellolike.model.model.Card_User;
-import com.trellolike.model.repository.CardUserRepository;
 import com.trellolike.model.repository.CardRepository;
+import com.trellolike.model.repository.CardUserRepository;
 import com.trellolike.model.repository.UserRepository;
 import com.trellolike.model.service.Interface.CardUserService;
 import lombok.AllArgsConstructor;

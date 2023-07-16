@@ -1,8 +1,8 @@
 package com.trellolike.model.service.Implementation;
 
-import com.trellolike.model.repository.BoardRepository;
 import com.trellolike.model.exception.ApiRequestException;
 import com.trellolike.model.model.List;
+import com.trellolike.model.repository.BoardRepository;
 import com.trellolike.model.repository.ListRepository;
 import com.trellolike.model.service.Interface.ListService;
 import lombok.AllArgsConstructor;
@@ -30,6 +30,11 @@ public class ListServiceImpl implements ListService {
             return listRepository.findById("" + id).get();
         else
             throw new ApiRequestException("This List does not exist.", HttpStatus.NOT_FOUND);
+    }
+
+    @Override
+    public java.util.List<List> getByProject(Integer id) {
+        return listRepository.getByProject(id);
     }
 
     @Override

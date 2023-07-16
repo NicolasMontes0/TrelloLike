@@ -24,6 +24,11 @@ public class ListController {
         return new ResponseEntity<>(listService.get(id), HttpStatus.OK);
     }
 
+    @GetMapping("/boards/{id}")
+    public ResponseEntity<java.util.List<List>> readByProject(@PathVariable Integer id) {
+        return new ResponseEntity<>(listService.getByProject(id), HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<List> create(@RequestBody List list) {
         return new ResponseEntity<>(listService.add(list), HttpStatus.CREATED);

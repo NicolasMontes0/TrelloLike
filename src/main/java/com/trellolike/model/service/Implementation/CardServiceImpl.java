@@ -34,6 +34,11 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
+    public List<Card> getByIdList(Integer id) {
+        return cardRepository.findByIdList(id);
+    }
+
+    @Override
     public Card add(Card card) {
         if(card.getName() == null || card.getName().equals(""))
             throw new ApiRequestException("'name' must not be null or blank.", HttpStatus.BAD_REQUEST);
