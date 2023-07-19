@@ -72,7 +72,7 @@ public class SignInController {
             try {
                 Current.userLoggedId = apiCaller.callApi(body, "/users", HttpMethod.POST);
             }catch (URISyntaxException e) {
-                loader.InternalError(e.getMessage());
+                loader.InternalError(e);
             }
             loader.loadPage("/view/home.fxml", 950.0, 600.0, event);
         }

@@ -43,7 +43,7 @@ public class AddListController {
         try {
             apiCaller.callApi(body, "/lists", HttpMethod.POST);
         } catch (URISyntaxException e) {
-            loader.InternalError(e.getMessage());
+            loader.InternalError(e);
         }
         loader.loadPage("/view/project.fxml", 1300.0, 900.0, event);
     }

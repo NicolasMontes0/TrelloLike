@@ -19,6 +19,4 @@ public class Board {
 
     @Column(nullable = false)
     private String name;
-
-    private String description;
 }

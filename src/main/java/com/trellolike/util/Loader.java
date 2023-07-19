@@ -20,8 +20,7 @@ public class Loader {
         try {
             scene = new Scene(fxmlLoader.load(), width, height);
         } catch (IOException e) {
-            e.printStackTrace();
-            InternalError(e.getMessage());
+            InternalError(e);
         }
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -31,10 +30,11 @@ public class Loader {
         stage.show();
     }
 
-    public void InternalError(String m) {
+    public void InternalError(Exception e) {
+        e.printStackTrace();
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
-        alert.setContentText("Erreur interne : " + m);
+        alert.setContentText("Erreur interne : " + e);
         alert.showAndWait();
     }
 }

@@ -1,18 +1,18 @@
 package com.trellolike.model.service.Interface;
 
-import com.trellolike.model.model.List;
+import com.trellolike.model.model.ListModel;
 
 public interface ListService {
 
-    java.util.List<List> getAll();
+    java.util.List<ListModel> getAll();
 
-    List get(Integer id);
+    ListModel get(Integer id);
 
-    List add(List list);
+    ListModel add(ListModel list);
 
-    List update(Integer id, List list);
+    ListModel update(Integer id, ListModel list);
 
     void remove(Integer id);
 
-    java.util.List<List> getByProject(Integer id);
+    java.util.List<ListModel> getByProject(Integer id);
 }

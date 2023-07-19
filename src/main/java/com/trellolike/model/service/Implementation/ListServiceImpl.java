@@ -1,7 +1,7 @@
 package com.trellolike.model.service.Implementation;
 
 import com.trellolike.model.exception.ApiRequestException;
-import com.trellolike.model.model.List;
+import com.trellolike.model.model.ListModel;
 import com.trellolike.model.repository.BoardRepository;
 import com.trellolike.model.repository.ListRepository;
 import com.trellolike.model.service.Interface.ListService;
@@ -20,12 +20,12 @@ public class ListServiceImpl implements ListService {
     private BoardRepository boardRepository;
 
     @Override
-    public java.util.List<List> getAll() {
+    public java.util.List<ListModel> getAll() {
         return listRepository.findAll();
     }
 
     @Override
-    public List get(Integer id) {
+    public ListModel get(Integer id) {
         if(listRepository.existsById("" + id))
             return listRepository.findById("" + id).get();
         else
@@ -33,12 +33,12 @@ public class ListServiceImpl implements ListService {
     }
 
     @Override
-    public java.util.List<List> getByProject(Integer id) {
+    public java.util.List<ListModel> getByProject(Integer id) {
         return listRepository.getByProject(id);
     }
 
     @Override
-    public List add(List list) {
+    public ListModel add(ListModel list) {
         if(list.getName() == null || list.getName().equals(""))
             throw new ApiRequestException("'name' must not be null or blank.", HttpStatus.BAD_REQUEST);
         if(!boardRepository.existsById("" + list.getId_board()))
@@ -47,11 +47,11 @@ public class ListServiceImpl implements ListService {
     }
 
     @Override
-    public List update(Integer id, List newList) {
-        Optional<List> opList = listRepository.findById("" + id);
+    public ListModel update(Integer id, ListModel newList) {
+        Optional<ListModel> opList = listRepository.findById("" + id);
         if(opList.isEmpty())
             throw new ApiRequestException("There is no list with this id.", HttpStatus.NOT_FOUND);
-        List list = opList.get();
+        ListModel list = opList.get();
         if(newList.getId_list() != null)
             throw new ApiRequestException("'id_list' cannot be changed.", HttpStatus.BAD_REQUEST);
         if(newList.getName() != null && !newList.getName().equals(""))

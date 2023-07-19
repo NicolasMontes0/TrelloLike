@@ -2,7 +2,7 @@ package com.trellolike.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.trellolike.model.model.List;
+import com.trellolike.model.model.ListModel;
 import com.trellolike.util.ApiCaller;
 import com.trellolike.util.Current;
 import com.trellolike.util.Loader;
@@ -47,14 +47,14 @@ public class ListDetailsController implements Initializable {
         try {
             result = apiCaller.callApi(null, "/lists/" + Current.listId, HttpMethod.GET);
         } catch (URISyntaxException e) {
-            loader.InternalError(e.getMessage());
+            loader.InternalError(e);
         }
         ObjectMapper objectMapper = new ObjectMapper();
-        List list = null;
+        ListModel list = null;
         try {
-            list = objectMapper.readValue(result, List.class);
+            list = objectMapper.readValue(result, ListModel.class);
         } catch (JsonProcessingException e) {
-            loader.InternalError(e.getMessage());
+            loader.InternalError(e);
         }
         if(list != null) {
             title.setText(title.getText() + list.getName());

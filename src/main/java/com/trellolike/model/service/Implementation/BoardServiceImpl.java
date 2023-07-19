@@ -59,9 +59,6 @@ public class BoardServiceImpl implements BoardService {
         if(newBoard.getName() != null && !newBoard.getName().equals("")) {
             board.setName(newBoard.getName());
         }
-        if(newBoard.getDescription() != null) {
-            board.setDescription(newBoard.getDescription());
-        }
         return boardRepository.save(board);
     }
 

@@ -48,7 +48,7 @@ public class CreateCardController {
             try {
                 Current.userLoggedId = apiCaller.callApi(body, "/cards", HttpMethod.POST);
             }catch (URISyntaxException e) {
-                loader.InternalError(e.getMessage());
+                loader.InternalError(e);
             }
             loader.loadPage("/view/project.fxml", 1300.0, 900.0, event);
         }

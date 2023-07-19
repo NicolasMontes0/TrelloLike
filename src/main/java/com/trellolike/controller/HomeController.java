@@ -49,7 +49,7 @@ public class HomeController implements Initializable {
         try {
             getProject();
         } catch (JsonProcessingException e) {
-            loader.InternalError(e.getMessage());
+            loader.InternalError(e);
         }
     }
 
@@ -60,14 +60,14 @@ public class HomeController implements Initializable {
         try {
             result = apiCaller.callApi(null, "/boards/users/" + Current.userLoggedId, HttpMethod.GET);
         } catch (URISyntaxException e) {
-            loader.InternalError(e.getMessage());
+            loader.InternalError(e);
         }
         List<Board> boards = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             boards = objectMapper.readValue(result, new TypeReference<>() {});
         } catch (Exception e) {
-            loader.InternalError(e.getMessage());
+            loader.InternalError(e);
         }
         while (boards.size() > gridPane.getColumnCount() * gridPane.getRowCount() - 1) {
             gridPane.setPrefHeight(gridPane.getPrefHeight() + button.getPrefHeight());

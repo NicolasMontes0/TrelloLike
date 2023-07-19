@@ -59,7 +59,7 @@ public class ForgotPasswordController {
             try {
                 result = apiCaller.callApi(null, "/users/pseudo/" + pseudo.getText(), HttpMethod.GET);
             }catch (URISyntaxException e) {
-                loader.InternalError(e.getMessage());
+                loader.InternalError(e);
             }
             if(result == null || result.equals("Error")) {
                 errorText.setText("Identifiant invalide");
@@ -76,7 +76,7 @@ public class ForgotPasswordController {
             try {
                 apiCaller.callApi(body, "/users/" + Current.userLoggedId, HttpMethod.PUT);
             }catch (URISyntaxException e) {
-                loader.InternalError(e.getMessage());
+                loader.InternalError(e);
             }
             loader.loadPage("/view/home.fxml", 950.0, 600.0, event);
         }

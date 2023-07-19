@@ -12,6 +12,12 @@ import java.net.URISyntaxException;
 
 public class ApiCaller {
 
+    private final Loader loader;
+
+    public ApiCaller() {
+        this.loader = new Loader();
+    }
+
     public String callApi(String body, String path, HttpMethod httpMethod) throws URISyntaxException {
         URI uri = new URI("http", null, "localhost", 8080, path, null, null);
 
@@ -26,7 +32,8 @@ public class ApiCaller {
             ResponseEntity<String> serverResponse = restTemplate.exchange(uri, httpMethod, requestEntity, String.class);
             return serverResponse.getBody();
         } catch (HttpStatusCodeException e) {
-            return "Error";
+            loader.InternalError(e);
+            return null;
         }
     }
 }

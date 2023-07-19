@@ -50,7 +50,7 @@ public class LoginController {
         try {
             Current.userLoggedId = apiCaller.callApi(null, "/users/" + pseudoText + "/" + passwordText, HttpMethod.GET);
         }catch (URISyntaxException e) {
-            loader.InternalError(e.getMessage());
+            loader.InternalError(e);
         }
 
         if(Current.userLoggedId == null || Current.userLoggedId.equals("Error")) {

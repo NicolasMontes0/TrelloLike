@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class List {
+public class ListModel {
     @Id
     @GeneratedValue
     private Integer id_list;
