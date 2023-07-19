@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trellolike.model.model.Board;
 import com.trellolike.model.model.Card;
+import com.trellolike.model.model.ListModel;
 import com.trellolike.util.ApiCaller;
 import com.trellolike.util.Current;
 import com.trellolike.util.Loader;
@@ -52,33 +53,36 @@ public class ProjectController implements Initializable {
     @FXML
     private Text projectName;
 
+    @FXML
+    private Button exportButton;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String result = "";
         try {
             result = apiCaller.callApi(null, "/boards/" + Current.projectId, HttpMethod.GET);
         } catch (URISyntaxException e) {
-            loader.InternalError(e.getMessage());
+            loader.InternalError(e);
         }
         ObjectMapper objectMapper = new ObjectMapper();
         Board board = null;
         try {
             board = objectMapper.readValue(result, Board.class);
         } catch (JsonProcessingException e) {
-            loader.InternalError(e.getMessage());
+            loader.InternalError(e);
         }
         projectName.setText(board.getName());
 
         try {
             result = apiCaller.callApi(null, "/lists/boards/" + Current.projectId, HttpMethod.GET);
         } catch (URISyntaxException e) {
-            loader.InternalError(e.getMessage());
+            loader.InternalError(e);
         }
-        List<com.trellolike.model.model.List> lists = new ArrayList<>();
+        List<ListModel> lists = new ArrayList<>();
         try {
             lists = objectMapper.readValue(result, new TypeReference<>() {});
         } catch (Exception e) {
-            loader.InternalError(e.getMessage());
+            loader.InternalError(e);
         }
         while(lists.size() + 1 > gridPane.getColumnCount()) {
             gridPane.setPrefWidth(gridPane.getPrefWidth() + addListButton.getPrefWidth());
@@ -88,17 +92,17 @@ public class ProjectController implements Initializable {
         }
         gridPane.getChildren().clear();
         int listCount = lists.size() + 1;
-        for (com.trellolike.model.model.List list : lists) {
+        for (ListModel list : lists) {
             try {
                 result = apiCaller.callApi(null, "/cards/lists/" + list.getId_list(), HttpMethod.GET);
             } catch (URISyntaxException e) {
-                loader.InternalError(e.getMessage());
+                loader.InternalError(e);
             }
             List<Card> cards = new ArrayList<>();
             try {
                 cards = objectMapper.readValue(result, new TypeReference<>() {});
             } catch (Exception e) {
-                loader.InternalError(e.getMessage());
+                loader.InternalError(e);
             }
             while(gridPane.getRowCount() < cards.size() + 2) {
                 gridPane.setPrefHeight(gridPane.getPrefHeight() + addListButton.getPrefHeight());
@@ -165,6 +169,11 @@ public class ProjectController implements Initializable {
     @FXML
     void deleteProject(ActionEvent event) {
 
+    }
+
+    @FXML
+    void export(ActionEvent event) {
+        loader.loadPage("/view/export.fxml", 600.0, 400.0, event);
     }
 
     @FXML
