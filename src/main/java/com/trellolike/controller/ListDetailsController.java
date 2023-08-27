@@ -9,7 +9,6 @@ import com.trellolike.util.Loader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.springframework.http.HttpMethod;
@@ -30,16 +29,10 @@ public class ListDetailsController implements Initializable {
     }
 
     @FXML
-    private Button deleteButton;
-
-    @FXML
     private TextField listName;
 
     @FXML
     private Text title;
-
-    @FXML
-    private Button updateButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -63,11 +56,22 @@ public class ListDetailsController implements Initializable {
 
     @FXML
     void deleteList(ActionEvent event) {
+        try {
+            apiCaller.callApi(null, "/lists/" + Current.listId, HttpMethod.DELETE);
+        } catch (URISyntaxException e) {
+            loader.InternalError(e);
+        }
 
+        loader.loadPage("/view/project.fxml", 1300.0, 900.0, event);
     }
 
     @FXML
     void updateList(ActionEvent event) {
 
+    }
+
+    @FXML
+    void closePage(ActionEvent event) {
+        loader.loadPage("/view/project.fxml", 1300.0, 900.0, event);
     }
 }
