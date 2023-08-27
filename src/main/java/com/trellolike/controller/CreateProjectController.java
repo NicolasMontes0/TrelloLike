@@ -5,12 +5,10 @@ import com.trellolike.util.Current;
 import com.trellolike.util.Loader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.springframework.http.HttpMethod;
 
-import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class CreateProjectController {
@@ -31,16 +29,12 @@ public class CreateProjectController {
     private TextField projectName;
 
     @FXML
-    private Button validationButton;
-
-    @FXML
-    void createProject(ActionEvent event) throws IOException {
+    void createProject(ActionEvent event) {
         if(projectName.getText().equals("")) {
             errorText.setText("Un nom doit être renseigné");
             errorText.setVisible(true);
         } else {
             String body = "{\"name\": \"" + projectName.getText() + "\"}";
-            String result = "";
             try {
                 apiCaller.callApi(body, "/boards/users/" + Current.userLoggedId, HttpMethod.POST);
             } catch (URISyntaxException e) {
@@ -48,5 +42,10 @@ public class CreateProjectController {
             }
             loader.loadPage("/view/home.fxml", 950.0, 600.0, event);
         }
+    }
+
+    @FXML
+    void closePage(ActionEvent event) {
+        loader.loadPage("/view/home.fxml", 950.0, 600.0, event);
     }
 }
