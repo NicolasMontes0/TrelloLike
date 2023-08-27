@@ -5,12 +5,10 @@ import com.trellolike.util.Current;
 import com.trellolike.util.Loader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.springframework.http.HttpMethod;
 
-import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.regex.Pattern;
 
@@ -41,10 +39,7 @@ public class SignInController {
     private TextField pseudo;
 
     @FXML
-    private Button signInButton;
-
-    @FXML
-    void signIn(ActionEvent event) throws IOException {
+    void signIn(ActionEvent event) {
         errorText.setVisible(false);
 
         String emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
@@ -76,5 +71,10 @@ public class SignInController {
             }
             loader.loadPage("/view/home.fxml", 950.0, 600.0, event);
         }
+    }
+
+    @FXML
+    void toLogInPage(ActionEvent event) {
+        loader.loadPage("/view/login.fxml", 500.0, 500.0, event);
     }
 }
