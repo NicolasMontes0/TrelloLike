@@ -17,7 +17,6 @@ import javafx.scene.layout.RowConstraints;
 import lombok.SneakyThrows;
 import org.springframework.http.HttpMethod;
 
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,15 +56,12 @@ public class HomeController implements Initializable {
     public void getProject() throws JsonProcessingException {
         int count = 1;
         String result = "";
-        try {
-            result = apiCaller.callApi(null, "/boards/users/" + Current.userLoggedId, HttpMethod.GET);
-        } catch (URISyntaxException e) {
-            loader.InternalError(e);
-        }
         List<Board> boards = new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            boards = objectMapper.readValue(result, new TypeReference<>() {});
+            result = apiCaller.callApi(null, "/boards/users/" + Current.userLoggedId, HttpMethod.GET);
+            if(result != null)
+                boards = objectMapper.readValue(result, new TypeReference<>() {});
         } catch (Exception e) {
             loader.InternalError(e);
         }
