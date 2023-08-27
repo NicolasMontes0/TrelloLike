@@ -5,7 +5,6 @@ import com.trellolike.util.Current;
 import com.trellolike.util.Loader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.springframework.http.HttpMethod;
@@ -27,9 +26,6 @@ public class AddListController {
     private Text errorText;
 
     @FXML
-    private Button addListButton;
-
-    @FXML
     private TextField listName;
 
     @FXML
@@ -45,6 +41,11 @@ public class AddListController {
         } catch (URISyntaxException e) {
             loader.InternalError(e);
         }
+        loader.loadPage("/view/project.fxml", 1300.0, 900.0, event);
+    }
+
+    @FXML
+    void closePage(ActionEvent event) {
         loader.loadPage("/view/project.fxml", 1300.0, 900.0, event);
     }
 }
