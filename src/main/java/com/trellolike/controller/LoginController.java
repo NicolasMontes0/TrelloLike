@@ -5,7 +5,6 @@ import com.trellolike.util.Current;
 import com.trellolike.util.Loader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -25,16 +24,7 @@ public class LoginController {
     }
 
     @FXML
-    private Text forgotPasword;
-
-    @FXML
-    private Button logIn;
-
-    @FXML
     private TextField password;
-
-    @FXML
-    private Button singIn;
 
     @FXML
     private Text textError;
