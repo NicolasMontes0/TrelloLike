@@ -2,9 +2,11 @@ package com.trellolike.model.service.Implementation;
 
 import com.trellolike.model.exception.ApiRequestException;
 import com.trellolike.model.model.Board;
+import com.trellolike.model.model.ListModel;
 import com.trellolike.model.model.User_Board;
 import com.trellolike.model.repository.BoardRepository;
 import com.trellolike.model.service.Interface.BoardService;
+import com.trellolike.model.service.Interface.ListService;
 import com.trellolike.model.service.Interface.UserBoardService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,8 @@ import java.util.Optional;
 public class BoardServiceImpl implements BoardService {
 
     private BoardRepository boardRepository;
+
+    private ListService listService;
 
     private UserBoardService userBoardService;
 
@@ -64,8 +68,13 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public void remove(Integer id) {
-        if(boardRepository.existsById("" + id))
+        if(boardRepository.existsById("" + id)) {
+            List<ListModel> lists = listService.getByProject(id);
+            for (ListModel list : lists) {
+                listService.remove(list.getId_list());
+            }
             boardRepository.deleteById("" + id);
+        }
         else
             throw new ApiRequestException("This Board does not exist.", HttpStatus.NOT_FOUND);
     }
