@@ -10,7 +10,6 @@ import com.trellolike.util.Loader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.text.Text;
 import org.springframework.http.HttpMethod;
@@ -40,9 +39,6 @@ public class ExportController implements Initializable {
 
     @FXML
     private Text title;
-
-    @FXML
-    private Button exportButton;
 
     public List<String> exportFormats = Arrays.asList("json");
 
@@ -74,5 +70,12 @@ public class ExportController implements Initializable {
         if(choice.equals("json")) {
             projectExporter.exportProjectJson();
         }
+
+        loader.loadPage("/view/project.fxml", 1300.0, 900.0, event);
+    }
+
+    @FXML
+    void closePage(ActionEvent event) {
+        loader.loadPage("/view/project.fxml", 1300.0, 900.0, event);
     }
 }
