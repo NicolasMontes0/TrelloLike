@@ -8,4 +8,6 @@ public class Current {
 
     public static String listId;
 
+    public static String cardId;
+
 }
