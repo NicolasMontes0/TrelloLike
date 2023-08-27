@@ -39,9 +39,6 @@ public class ProjectController implements Initializable {
     }
 
     @FXML
-    private Button deleteButton;
-
-    @FXML
     private Button addListButton;
 
     @FXML
@@ -53,32 +50,30 @@ public class ProjectController implements Initializable {
     @FXML
     private Text projectName;
 
-    @FXML
-    private Button exportButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String result = "";
+        List<ListModel> lists = new ArrayList<>();
+        List<Card> cards = new ArrayList<>();
         try {
             result = apiCaller.callApi(null, "/boards/" + Current.projectId, HttpMethod.GET);
         } catch (URISyntaxException e) {
             loader.InternalError(e);
         }
         ObjectMapper objectMapper = new ObjectMapper();
-        Board board = null;
+        Board board;
         try {
             board = objectMapper.readValue(result, Board.class);
+            projectName.setText(board.getName());
         } catch (JsonProcessingException e) {
             loader.InternalError(e);
         }
-        projectName.setText(board.getName());
-
         try {
             result = apiCaller.callApi(null, "/lists/boards/" + Current.projectId, HttpMethod.GET);
         } catch (URISyntaxException e) {
             loader.InternalError(e);
         }
-        List<ListModel> lists = new ArrayList<>();
         try {
             lists = objectMapper.readValue(result, new TypeReference<>() {});
         } catch (Exception e) {
@@ -98,7 +93,6 @@ public class ProjectController implements Initializable {
             } catch (URISyntaxException e) {
                 loader.InternalError(e);
             }
-            List<Card> cards = new ArrayList<>();
             try {
                 cards = objectMapper.readValue(result, new TypeReference<>() {});
             } catch (Exception e) {
@@ -141,8 +135,8 @@ public class ProjectController implements Initializable {
             b.setFont(new Font(24));
             b.setOnAction(this::createCard);
             b.setId("" + list.getId_list());
-            gridPane.add(b, listCount, cardCount);
 
+            gridPane.add(b, listCount, cardCount);
             listCount++;
         }
         gridPane.add(addListButton, listCount, 0);
@@ -156,7 +150,10 @@ public class ProjectController implements Initializable {
     }
 
     void showCardDetails(ActionEvent event) {
+        Button b = (Button) event.getSource();
+        Current.cardId = b.getId();
 
+        loader.loadPage("/view/cardDetails.fxml", 600.0, 400.0, event);
     }
 
     void createCard(ActionEvent event) {
@@ -168,7 +165,13 @@ public class ProjectController implements Initializable {
 
     @FXML
     void deleteProject(ActionEvent event) {
+        try {
+            apiCaller.callApi(null, "/boards/" + Current.projectId, HttpMethod.DELETE);
+        } catch (URISyntaxException e) {
+            loader.InternalError(e);
+        }
 
+        loader.loadPage("/view/home.fxml", 950.0, 600.0, event);
     }
 
     @FXML
@@ -179,5 +182,10 @@ public class ProjectController implements Initializable {
     @FXML
     void addList(ActionEvent event) {
         loader.loadPage("/view/addList.fxml", 600.0, 400.0, event);
+    }
+
+    @FXML
+    void closePage(ActionEvent event) {
+        loader.loadPage("/view/home.fxml", 950.0, 600.0, event);
     }
 }
