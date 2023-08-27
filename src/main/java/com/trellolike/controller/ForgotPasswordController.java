@@ -7,7 +7,6 @@ import com.trellolike.util.Current;
 import com.trellolike.util.Loader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import org.springframework.http.HttpMethod;
@@ -25,9 +24,6 @@ public class ForgotPasswordController {
         this.apiCaller = new ApiCaller();
         this.loader = new Loader();
     }
-
-    @FXML
-    private Button confirmationButton;
 
     @FXML
     private TextField password;
@@ -80,5 +76,10 @@ public class ForgotPasswordController {
             }
             loader.loadPage("/view/home.fxml", 950.0, 600.0, event);
         }
+    }
+
+    @FXML
+    void closePage(ActionEvent event) {
+        loader.loadPage("/view/login.fxml", 500.0, 500.0, event);
     }
 }
