@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="900.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.trellolike.controller.ProjectController">
    <children>
-      <Text fx:id="projectName" layoutX="281.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="737.13671875">
+      <Text fx:id="projectName" layoutX="281.0" layoutY="69.0" onMouseClicked="#updateProject" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="737.13671875">
          <font>
             <Font size="36.0" />
          </font>

@@ -13,6 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -49,7 +51,6 @@ public class ProjectController implements Initializable {
 
     @FXML
     private Text projectName;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -117,15 +118,16 @@ public class ProjectController implements Initializable {
 
             int cardCount = 1;
             for (Card card : cards) {
-                Button but = new Button();
-                but.setText(card.getName());
-                but.setPrefWidth(addListButton.getPrefWidth());
-                but.setPrefHeight(addListButton.getPrefHeight());
-                but.setFont(new Font(11));
-                but.setOnAction(this::showCardDetails);
-                but.setId("" + card.getId_card());
+                TextArea cardTextArea = new TextArea();
+                cardTextArea.setText(card.getName());
+                cardTextArea.setPrefWidth(addListButton.getPrefWidth());
+                cardTextArea.setPrefHeight(addListButton.getPrefHeight());
+                cardTextArea.setWrapText(true);
+                cardTextArea.setFont(new Font(12));
+                cardTextArea.setOnMouseClicked(this::showCardDetails);
+                cardTextArea.setId("" + card.getId_card());
 
-                gridPane.add(but, listCount, cardCount);
+                gridPane.add(cardTextArea, listCount, cardCount);
                 cardCount++;
             }
             Button b = new Button();
@@ -149,9 +151,9 @@ public class ProjectController implements Initializable {
         loader.loadPage("/view/listDetails.fxml", 600.0, 400.0, event);
     }
 
-    void showCardDetails(ActionEvent event) {
-        Button b = (Button) event.getSource();
-        Current.cardId = b.getId();
+    void showCardDetails(MouseEvent event) {
+        TextArea t = (TextArea) event.getSource();
+        Current.cardId = t.getId();
 
         loader.loadPage("/view/cardDetails.fxml", 600.0, 400.0, event);
     }

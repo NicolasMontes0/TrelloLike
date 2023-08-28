@@ -17,9 +17,10 @@ public class Card {
     @GeneratedValue
     private Integer id_card;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 500)
     private String name;
 
+    @Column(length = 500)
     private String description;
 
     private String date;

@@ -42,8 +42,8 @@ public class CreateCardController {
         if(cardName.getText().equals("")) {
             errorText.setText("Le titre doit être renseigné");
             errorText.setVisible(true);
-        } else if(cardName.getText().length() > 50) {
-            errorText.setText("Le titre doit être inférieur à 51 caractères");
+        } else if(cardName.getText().length() > 500) {
+            errorText.setText("Le titre doit être inférieur à 501 caractères");
             errorText.setVisible(true);
         } else if(cardDescription.getText().length() > 500) {
             errorText.setText("La description doit être inférieur à 501 caractères");
