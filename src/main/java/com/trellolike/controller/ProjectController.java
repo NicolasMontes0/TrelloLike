@@ -188,4 +188,9 @@ public class ProjectController implements Initializable {
     void closePage(ActionEvent event) {
         loader.loadPage("/view/home.fxml", 950.0, 600.0, event);
     }
+
+    @FXML
+    void updateProject(MouseEvent event) {
+        loader.loadPage("/view/projectDetails.fxml", 600.0, 300.0, event);
+    }
 }
