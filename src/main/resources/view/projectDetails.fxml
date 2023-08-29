@@ -20,13 +20,13 @@
       </TextField>
       <Button layoutX="350.0" layoutY="206.0" mnemonicParsing="false" onAction="#updateProject" prefHeight="59.0" prefWidth="172.0" text="Modifier">
          <font>
-            <Font size="18.0" />
+            <Font size="24.0" />
          </font>
       </Button>
       <Text fx:id="errorText" fill="#e81111" layoutX="42.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" visible="false" wrappingWidth="514.13671875" />
       <Button layoutX="80.0" layoutY="206.0" mnemonicParsing="false" onAction="#closePage" prefHeight="59.0" prefWidth="172.0" text="Fermer">
          <font>
-            <Font size="18.0" />
+            <Font size="24.0" />
          </font>
       </Button>
    </children>

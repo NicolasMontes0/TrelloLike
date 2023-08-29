@@ -63,6 +63,9 @@ public class CardServiceImpl implements CardService {
         if(newCard.getDescription() != null) {
             card.setDescription(newCard.getDescription());
         }
+        if(newCard.getDate() != null) {
+            card.setDate(newCard.getDate());
+        }
         if(newCard.getId_list() != null) {
             if(!listRepository.existsById("" + newCard.getId_list()))
                 throw new ApiRequestException("'id_List' does not exist.", HttpStatus.BAD_REQUEST);
