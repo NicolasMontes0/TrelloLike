@@ -34,6 +34,11 @@ public class ListDetailsController implements Initializable {
     @FXML
     private Text title;
 
+    @FXML
+    private Text errorText;
+
+    private String listNameVar;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String result = "";
@@ -51,6 +56,7 @@ public class ListDetailsController implements Initializable {
         }
         if(list != null) {
             title.setText(title.getText() + list.getName());
+            listNameVar = list.getName();
         }
     }
 
@@ -67,7 +73,21 @@ public class ListDetailsController implements Initializable {
 
     @FXML
     void updateList(ActionEvent event) {
+        if (listNameVar != null) {
+            if(listName.getText().equals("") || listName.getText().equals(listNameVar)) {
+                errorText.setVisible(true);
+                errorText.setText("Le champ 'nouveau nom' est vide ou identique au précédent");
+            } else {
+                String body = "{\"name\": \"" + listName.getText() + "\"}";
+                try {
+                    apiCaller.callApi(body, "/lists/" + Current.listId, HttpMethod.PUT);
+                } catch (URISyntaxException e) {
+                    loader.InternalError(e);
+                }
 
+                loader.loadPage("/view/project.fxml", 1300.0, 900.0, event);
+            }
+        }
     }
 
     @FXML

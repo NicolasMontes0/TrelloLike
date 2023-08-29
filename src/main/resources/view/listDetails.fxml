@@ -18,7 +18,7 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <TextField fx:id="listName" layoutX="165.0" layoutY="144.0" prefHeight="39.0" prefWidth="270.0" promptText="name">
+      <TextField fx:id="listName" layoutX="165.0" layoutY="144.0" prefHeight="39.0" prefWidth="270.0" promptText="Nouveau nom">
          <font>
             <Font size="18.0" />
          </font>
@@ -33,5 +33,6 @@
             <Font size="24.0" />
          </font>
       </Button>
+      <Text fx:id="errorText" fill="#d01414" layoutX="67.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" visible="false" wrappingWidth="466.13671875" />
    </children>
 </AnchorPane>
