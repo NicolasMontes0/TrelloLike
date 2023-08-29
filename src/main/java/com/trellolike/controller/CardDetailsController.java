@@ -69,8 +69,8 @@ public class CardDetailsController implements Initializable {
     }
 
     @FXML
-    void closePage(ActionEvent event) {
-        loader.loadPage("/view/project.fxml", 1300.0, 900.0, event);
+    void updateCard(ActionEvent event) {
+        loader.loadPage("/view/updateCard.fxml", 600.0, 400.0, event);
     }
 
     @FXML
@@ -81,6 +81,11 @@ public class CardDetailsController implements Initializable {
             loader.InternalError(e);
         }
 
+        loader.loadPage("/view/project.fxml", 1300.0, 900.0, event);
+    }
+
+    @FXML
+    void closePage(ActionEvent event) {
         loader.loadPage("/view/project.fxml", 1300.0, 900.0, event);
     }
 }
