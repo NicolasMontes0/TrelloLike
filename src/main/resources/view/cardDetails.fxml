@@ -13,7 +13,7 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <Button layoutX="221.0" layoutY="296.0" mnemonicParsing="false" onAction="#closePage" prefHeight="73.0" prefWidth="159.0" text="Fermer">
+      <Button layoutX="34.0" layoutY="296.0" mnemonicParsing="false" onAction="#closePage" prefHeight="73.0" prefWidth="159.0" text="Fermer">
          <font>
             <Font size="24.0" />
          </font>
@@ -23,14 +23,22 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <TextArea fx:id="descriptionText" editable="false" layoutX="33.0" layoutY="118.0" prefHeight="162.0" prefWidth="534.0" wrapText="true" />
-      <Text fx:id="date" layoutX="73.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de rendu :" underline="true" visible="false" />
-      <Text fx:id="dateText" layoutX="43.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" underline="true" visible="false" wrappingWidth="142.0">
+      <TextArea fx:id="descriptionText" editable="false" layoutX="33.0" layoutY="118.0" prefHeight="162.0" prefWidth="387.0" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font></TextArea>
+      <Text fx:id="date" layoutX="466.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de rendu :" underline="true" visible="false" />
+      <Text fx:id="dateText" layoutX="436.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" underline="true" visible="false" wrappingWidth="142.0">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
       <Button layoutX="408.0" layoutY="296.0" mnemonicParsing="false" onAction="#delete" prefHeight="73.0" prefWidth="159.0" text="Supprimer">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="221.0" layoutY="296.0" mnemonicParsing="false" onAction="#updateCard" prefHeight="73.0" prefWidth="159.0" text="Modifier">
          <font>
             <Font size="24.0" />
          </font>
